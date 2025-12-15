@@ -378,97 +378,142 @@ export default function App() {
 
 ## 🧩 Exercices pratiques
 
-### **Exercice 1 : Navigation combinée**
+# Geocoding
 
-Créer une application avec :
+## EXO - 1
 
-- un bottom tab
-- un top tab à l’intérieur d’un des écrans
-  → Objectif : comprendre la hiérarchie de navigation.
+### Adresse ⇒ coordonnée GPS et coordonnée GPS ⇒ Adresse
 
----
+- Créer une screen ‘Geocoding’ avec un input et 2 boutons
+- l’input permettra à l’utilisateur d’entrée une adresse et d’afficher les coordonnées GPS dans le terminal.
+- Un des bouton permettra d’afficher l’adresse dans le terminal en fonction des coordonnées de la position GPS courante.
 
-### **Exercice 2 : Géolocalisation et affichage sur une carte**
+## EXO - 2 Map Event
 
-1. Afficher la position en temps réel de l’utilisateur sur une carte (via `react-native-maps`).
-2. Un bouton “toggle” permettra de switcher les mode d’affichage de la map.
-3. A partir du JSON suivant, afficher les marker sur la map.
-4. Une pression sur l’écran permettra d’ajouter un marker au notre JSON (base de données fictive).
+- Créer une screen qui affiche un map.
+- Un “onPress” permettra d’afficher dans le terminal les coordonnées GPS correspondantes.
+- Matérialiser par un marker tous les points GPS saisie de cette manière.
+- Autoriser votre utilisateur a “drag and drop” un marker et sélectionner un nouveau point GPS GPS dans la console).
+
+## EXO - 3 Polyline
+
+- Créer une screen qui affiche un map.
+- A l’aide de la méthode polyline, dessinez une ligne rouge entre Paris et New york
+
+## EXO - 4 Live tracking (Voir et afficher les déplacements d’un utilisateur sur une map)
+
+⇒ Voir cours
+
+[Live Tracking](https://www.notion.so/Live-Tracking-2ca985e992b780b6bc38f3cb196e8a13?pvs=21)
+
+Objectif:
+
+- Se déplacer et voir le marker évoluer en conséquence sur une map
+- Mettre à jour la polyline avec des nouvelles coordonnées
+- ‘pusher’ des nouvelles coordonnées dans un tableau
+
+**Application pratique**
+
+- **jogging app**
+- **monitoring vehicule app**
+- **livraison**
+
+## EXO - 5 Géofencing
+
+[Géofencing](https://www.notion.so/G-ofencing-2ca985e992b780ddbea3e4d85e2664af?pvs=21)
+
+A l’aide l’exercice 2, récupérer les coordonnées du terrain de beach-volley.
+
+Créer un diamètre de 10m proche de ce point GPS.
+
+Ecrivez le code permettant de déclencher une action (console.log) lors de l’entrée dans la zone.
+
+## AirBNB
+
+**R-bnb est une application mobile permettant de géolocaliser un utilisateur en matérialisant sa position (ses déplacements) sur une carte interactive et en offrant la possibilité d’y ajouter des points d'intérêt représentant des logements. L'application permettra:**
+
+- de se connecter.
+- de s'inscrire.
+- d'afficher tous les appartements sous forme de 'marker' sur une carte autour de ta position géographique.
+- d'afficher tous les appartements sous forme de card (voir Airbnb au format mobile).
+- de 'liker' un appartement.
+- d'ajouter (d’une touche sur l’écran)un nouveau appartement **(titre, description, prix)**.
+- d'afficher uniquement ses appartements dans une screen.
+- d'afficher un appartement.
+- d'afficher tous les appartements que j'ai 'liker'.
+- trouver un lieu géographique et de l'afficher sur une carte.
 
 ```jsx
-const markers = [
-  {
-    title: "Tour Eiffel",
-    description:
-      "Symbole emblématique de Paris, construite pour l’Exposition universelle de 1889.",
-    latitude: 48.85837,
-    longitude: 2.294481,
-  },
-  {
-    title: "Mont Saint-Michel",
-    description:
-      "Îlot rocheux et abbaye médiévale célèbre, situé en Normandie.",
-    latitude: 48.636063,
-    longitude: -1.511457,
-  },
-  {
-    title: "Château de Versailles",
-    description:
-      "Ancienne résidence royale connue pour ses jardins et sa galerie des glaces.",
-    latitude: 48.804865,
-    longitude: 2.120355,
-  },
-  {
-    title: "Cathédrale Notre-Dame de Paris",
-    description:
-      "Chef-d’œuvre de l’architecture gothique situé sur l’île de la Cité.",
-    latitude: 48.852968,
-    longitude: 2.349902,
-  },
-  {
-    title: "Pont du Gard",
-    description:
-      "Aqueduc romain parfaitement conservé, classé au patrimoine mondial de l’UNESCO.",
-    latitude: 43.9475,
-    longitude: 4.535,
-  },
-];
+npx create-next-app@latest airbnb
 ```
 
----
+![Airbnb.png](attachment:dda6aa87-e083-4eb7-8a6c-2a8464567ff8:Airbnb.png)
 
-### **Exercice 3 : Gestion de profil avec Zustand et AsyncStorage**
+```jsx
+{
+  "ville": "Aix-en-Provence",
+  "logements": [
+    {
+      "adresse": "12 Rue Espariat, 13100 Aix-en-Provence",
+      "latitude": 43.5296,
+      "longitude": 5.4478,
+      "prix_par_nuit": 95
+    },
+    {
+      "adresse": "5 Rue de la Couronne, 13100 Aix-en-Provence",
+      "latitude": 43.5289,
+      "longitude": 5.4489,
+      "prix_par_nuit": 110
+    },
+    {
+      "adresse": "18 Boulevard du Roi René, 13100 Aix-en-Provence",
+      "latitude": 43.5267,
+      "longitude": 5.4456,
+      "prix_par_nuit": 130
+    },
+    {
+      "adresse": "7 Rue Mignet, 13100 Aix-en-Provence",
+      "latitude": 43.5291,
+      "longitude": 5.4451,
+      "prix_par_nuit": 105
+    },
+    {
+      "adresse": "25 Rue Cardinale, 13100 Aix-en-Provence",
+      "latitude": 43.5304,
+      "longitude": 5.4497,
+      "prix_par_nuit": 90
+    },
+    {
+      "adresse": "3 Place des Prêcheurs, 13100 Aix-en-Provence",
+      "latitude": 43.5299,
+      "longitude": 5.4491,
+      "prix_par_nuit": 125
+    },
+    {
+      "adresse": "14 Rue d’Italie, 13100 Aix-en-Provence",
+      "latitude": 43.5312,
+      "longitude": 5.4463,
+      "prix_par_nuit": 100
+    },
+    {
+      "adresse": "9 Avenue Victor Hugo, 13100 Aix-en-Provence",
+      "latitude": 43.5248,
+      "longitude": 5.4399,
+      "prix_par_nuit": 140
+    },
+    {
+      "adresse": "21 Rue Fermée, 13100 Aix-en-Provence",
+      "latitude": 43.5281,
+      "longitude": 5.4510,
+      "prix_par_nuit": 85
+    },
+    {
+      "adresse": "6 Rue Lieutaud, 13100 Aix-en-Provence",
+      "latitude": 43.5274,
+      "longitude": 5.4502,
+      "prix_par_nuit": 115
+    }
+  ]
+}
 
-Créer un petit écran “Signin” où l’utilisateur saisit son email et password, stocké dans Zustand et persisté via AsyncStorage.
-
-Un écran “profil” affichera l’email depuis le store.
-
----
-
-### **Exercice 4 : Requête HTTP avec TanStack Query**
-
-Créer un écran qui liste des utilisateurs depuis une API externe (ex: JSONPlaceholder).
-
-→ Ajouter un bouton “Rafraîchir” pour recharger les données.
-
----
-
-### **Exercice 5 : Application finale intégrée**
-
-Assembler tous les éléments :
-
-- Navigation complète
-- État global
-- Stockage local
-- Géolocalisation
-- Données distantes avec TanStack Query
-
-→ L’application finale affiche un tableau de bord utilisateur géolocalisé avec ses infos et la liste de données distantes.
-
----
-
-## 🏁 Conclusion
-
-À la fin de la journée, les apprenants auront construit une **application complète et modulaire**, exploitant les principales briques d’un projet React Native professionnel avec Expo.
-
-[Mise en production](https://www.notion.so/Mise-en-production-2ca985e992b7809fab28c3aa60f1a913?pvs=21)
+```

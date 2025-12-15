@@ -26,7 +26,7 @@ export default function Geoloc() {
       const location = await Location.getCurrentPositionAsync()
       if (location) {
         const { coords } = location
-        //console.log(coords)
+        console.log(coords)
         setCoordinate({latitude: coords.latitude, longitude: coords.longitude})
       }
     }
@@ -37,7 +37,7 @@ export default function Geoloc() {
   
   //exo1
   const handlePressMap = (e) => {
-    //console.log(e)
+    console.log(e)
     setIsOpen(!isOpen)
     setCoordinate({latitude: e.latitude, longitude: e.longitude})
   }

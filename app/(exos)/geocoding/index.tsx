@@ -1,4 +1,3 @@
-import * as Location from 'expo-location';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import MapView, { LatLng, Marker } from 'react-native-maps';
@@ -11,45 +10,33 @@ export default function Geocoding() {
     
     useEffect(() => {
         const getPermission = async() => {
-            const { status } = await Location.getForegroundPermissionsAsync()
-            if (status !== 'granted') {
-                console.log('ask permission !')
-                return     
-            }
-            const currentLocation = await Location.getCurrentPositionAsync()
-                if (currentLocation) {
-                    console.log('geocoding', currentLocation)
-                    setLocation(currentLocation)
-                }
+            //get permission
+            //code...
+
+            //get current location
+            //code...
+
+            //set location
+            //code...
         }
         getPermission()
     }, []) 
 
-
+    //convert address to coordinates
     const geocode = async () => {
-        const geocodedLocation = await Location.geocodeAsync(address)
-        console.log(geocodedLocation)
-        //const resultat = geocodedLocation[0]
-        //setLocation({coords: {latitude: resultat.latitude, longitude: resultat.longitude}})
+        //code...
     }
 
+    //convert coordinates to address
     const reverseGeocoding = async () => {
-        console.log('location', location)
-        const rGeo = await Location.reverseGeocodeAsync({
-            longitude: location.coords.longitude,
-            latitude: location.coords.latitude
-        })
-        console.log(rGeo)
+        //code...
     }
 
-    return location && (
+    return (
       <SafeAreaView style={styles.container}>
             <View>
-                <Text>Geocoding</Text>
-            </View>
-            <View>
-                <TextInput className='border' value={address} onChangeText={setAddress} />
-                <TouchableOpacity onPress={() => geocode()} className='bg-red-300 w-full items-center p-5'>
+                <TextInput className='border w-4/5 m-auto' placeholder='Ex: 4 rue des acacias Paris' value={address}  />
+                <TouchableOpacity onPress={() => geocode()} className='bg-red-300 w-4/5 m-auto mt-6 items-center p-5'>
                     <Text className='text-white'>Geocoding</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => reverseGeocoding()} className='bg-red-300 w-full items-center p-5 mt-5'>
@@ -60,22 +47,14 @@ export default function Geocoding() {
                 <MapView
                     style={styles.map}
                     initialRegion={{
-                        latitude: location.coords.latitude,
-                        longitude: location.coords.longitude,
+                        latitude: 43.4747908,
+                        longitude: 5.4910183,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
                 >
                     <Marker
-                        draggable
-                        coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
-                        onDragEnd={(e) => {
-                            const { latitude, longitude } = e.nativeEvent.coordinate;
-                            setLocation({
-                                coords: { latitude: latitude, longitude: longitude }
-                            });
-                            console.log(location)
-                        }}
+                        coordinate={{ latitude: 43.4747908, longitude: 5.4910183 }}
                     />
                 </MapView>
             </View>
